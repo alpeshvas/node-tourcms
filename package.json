@@ -14,7 +14,7 @@
   "main": "node-tourcms.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tourcms/node-tourcms.git"
+    "url": "https://github.com/alpeshvas/node-tourcms.git"
   },
   "scripts": {
     "test": "npm run lint && mocha",
