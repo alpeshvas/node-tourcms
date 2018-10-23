@@ -76,11 +76,7 @@ TourCMS.prototype.makeRequest = function(a) {
 
     response.setEncoding("utf8");
 
-    console.log('STATUS: ' + response.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(response.headers));
-    response.on('data', function(chunk){
-        console.log('BODY: ' + chunk);
-    });
+
     // Pipe to handler
 
     var concatStream = concat(apiResponded);
@@ -99,6 +95,11 @@ TourCMS.prototype.makeRequest = function(a) {
         if(!result) {
           console.error("apiResponse for error"+apiResponse);
           console.error(err)
+          console.log('STATUS: ' + response.statusCode);
+          console.log('HEADERS: ' + JSON.stringify(response.headers));
+          response.on('data', function(chunk){
+              console.log('BODY: ' + chunk);
+          });
         }
         if(typeof a.processor !== 'undefined')
           a.processor(result.response, a.callback);
