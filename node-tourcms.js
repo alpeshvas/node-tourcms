@@ -76,12 +76,18 @@ TourCMS.prototype.makeRequest = function(a) {
 
     response.setEncoding("utf8");
 
+    console.log('STATUS: ' + response.statusCode);
+    console.log('HEADERS: ' + JSON.stringify(response.headers));
+    response.on('data', function(chunk){
+        console.log('BODY: ' + chunk);
+    });
     // Pipe to handler
+
     var concatStream = concat(apiResponded);
     response.pipe(concatStream);
 
     // Handle errors
-    response.on("error", console.log);
+    response.on("error ", console.log);
 
     // Process API response
     function apiResponded(apiResponse) {
