@@ -94,11 +94,12 @@ TourCMS.prototype.makeRequest = function(a) {
         // Otherwise call the original callback
         if(!result) {
           console.error("apiResponse for error"+apiResponse);
-          console.error(err)
-          console.log('STATUS: ' + response.statusCode);
-          console.log('HEADERS: ' + JSON.stringify(response.headers));
+          console.error(err);
+          console.log('REQUEST HEADERS: ' + JSON.stringify(response.req._header));
+          console.log('RESPONSE STATUS: ' + response.statusCode);
+          console.log('RESPONSE HEADERS: ' + JSON.stringify(response.headers));
           response.on('data', function(chunk){
-              console.log('BODY: ' + chunk);
+              console.log('RESPONSE BODY: ' + chunk);
           });
         }
         if(typeof a.processor !== 'undefined')
