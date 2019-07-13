@@ -102,8 +102,15 @@ TourCMS.prototype.makeRequest = function(a) {
               console.log('RESPONSE BODY: ' + chunk);
           });
         }
-        if(typeof a.processor !== 'undefined')
-          a.processor(result.response, a.callback);
+        if(typeof a.processor !== 'undefined') {
+          if(result !== null) {
+            a.processor(result.response, a.callback);
+          } else {
+            a.callback({
+              error: 'NULL RESPONSE'
+            })
+          }
+        }
         else
           a.callback(result.response);
       });
